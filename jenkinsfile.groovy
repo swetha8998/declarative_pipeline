@@ -2,17 +2,17 @@ pipeline{
 agent any 
 stages{
 stage('git'){
-  step{
+  steps{
 git branch: 'branch1', url: 'https://github.com/swetha8998/declarative_pipeline.git'
   }
 }
 stage('Build'){
-  step{
+  steps{
 sh 'echo "in building stage"'
   }
 }
 stage('Approval'){
-  step{
+  steps{
 sh 'echo "in approval stage" '
   timeout(time: 15, unit: "MINUTES") {
     input message: 'Do you want to approve the deploy in production?', ok: 'Yes'
@@ -20,7 +20,7 @@ sh 'echo "in approval stage" '
   }
 }
 stage('Deploy'){
-  step{
+  steps{
 sh 'echo "in deployment stage" '
  }
 }
